@@ -1,126 +1,58 @@
-<!--
-  GitHub Pages Garage Template
-  ---------------------------------
-  - This is a single-file template (index.html).
-  - Edit the CONFIG block below to set: GARAGE_NAME, LOGO filename, PRIMARY_COLOR, FORM_SRC
-  - Put a logo file (logo.png) next to this index.html or update the LOGO path.
-  - To create a per-garage site, copy this file into a folder like /garage-olav/index.html and edit the CONFIG values.
-  - The Google Form must be the "embed" URL (forms -> Send -> < > -> copy the iframe src).
-
-  Quick steps after editing:
-  1) Create GitHub repo (username.github.io) or add a folder to an existing Pages-enabled repo.
-  2) Upload index.html and the logo into /garage-slug/ folder.
-  3) GitHub Pages will serve the file at: https://<username>.github.io/garage-slug/
-
-  NOTE: Do NOT paste sensitive credentials into this file. Keep it static.
--->
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GARAGE NAME - Kundeside</title>
-  <style>
-    :root{--primary:#1f6feb;--muted:#6b7280;--bg:#f7fafc}
-    *{box-sizing:border-box}
-    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; color:#111}
-    header{background:linear-gradient(180deg, var(--primary), #154aa8); color:#fff; padding:18px 20px}
-    .wrap{max-width:980px;margin:20px auto;padding:0 16px}
-    .brand{display:flex;align-items:center;gap:14px}
-    .brand img{height:56px;width:auto;border-radius:6px;background:#fff;padding:6px}
-    h1{font-size:20px;margin:0}
-    p.lead{color:var(--muted);margin:6px 0 0}
-    main{background:linear-gradient(180deg, #fff, #fbfdff);border-radius:10px;padding:18px;margin-top:18px;box-shadow:0 6px 18px rgba(16,24,40,0.06)}
-    .columns{display:flex;gap:18px}
-    .left{flex:1}
-    .right{width:420px}
-    .panel{background:var(--bg);padding:12px;border-radius:8px}
-    label{display:block;font-weight:600;margin-bottom:6px}
-    .muted{color:var(--muted);font-size:14px}
-    iframe{width:100%;border:0;border-radius:8px;min-height:640px}
-    footer{margin-top:22px;padding:18px 0;color:var(--muted);font-size:14px}
-    .cta{display:inline-block;background:var(--primary);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none}
-    @media (max-width:880px){.columns{flex-direction:column}.right{width:100%}iframe{min-height:520px}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bestill Verkstedtjeneste</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 0;
+  }
+  .header {
+    background: linear-gradient(135deg, #1a73e8, #4285f4);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+  .header h1 {
+    font-size: 2.8em;
+    margin: 0;
+  }
+  .header p {
+    font-size: 1.2em;
+    margin-top: 10px;
+  }
+  .form-wrapper {
+    max-width: 700px;
+    margin: -50px auto 50px auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    padding: 40px 20px;
+  }
+  iframe {
+    width: 100%;
+    height: 800px;
+    border: none;
+    border-radius: 10px;
+  }
+</style>
 </head>
 <body>
-</header>
 
-  <header>
-    <div class="wrap">
-      <div class="brand">
-        <img id="logo-img" src="logo.png" alt="Logo">
-        <div>
-          <h1 id="garage-name">GARASJENAVN</h1>
-          <p class="lead">Bestill, lever eller følg opp bilen din enkelt og trygt.</p>
-        </div>
-      </div>
-    </div>
-  </header>
+<div class="header">
+  <h1>Bestill Verkstedtjeneste</h1>
+  <p>Fyll ut skjemaet under, så tar vi kontakt!</p>
+</div>
 
-  <div class="wrap">
-    <main>
-      <div class="columns">
-        <div class="left">
-          <div class="panel">
-            <h2>Bestill verkstedtjeneste</h2>
-            <p class="muted">Fyll ut skjemaet under — når du sender, blir oppdraget registrert direkte i verkstedets system.</p>
-            <div style="margin-top:12px;">
-              <!-- Embed Google Form here -->
-              <iframe id="form-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSfEXAMPLE123/viewform?embedded=true">Loading…</iframe>
-            </div>
-          </div>
-        </div>
-        <aside class="right">
-          <div class="panel">
-            <h3>Hva skjer etter innlevering?</h3>
-            <p class="muted">Når du sender skjemaet, opprettes et arbeidskort i verkstedets interne system. Verkstedet tar kontakt for å bekrefte tid og pris.</p>
-            <hr style="margin:12px 0">
-            <p><strong>Åpningstider:</strong><br>Man–Fre 08:00–17:00</p>
-            <p><strong>Adresse:</strong><br id="garage-address">Kontakt verkstedet for adresse</p>
-            <p style="margin-top:10px"><a class="cta" href="#form">Fyll ut skjema</a></p>
-          </div>
-        </aside>
-      </div>
-    </main>
+<div class="form-wrapper">
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScOYW8aKlgbnBqQIQgu09yeuD3uF348U5ZQ7SxdsbIPY2lQZA/viewform?usp=header">Loading…</iframe>
+</div>
 
-    <footer>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-        <div class="muted">© <span id="year">2025</span> <span id="contact-signature">GARASJENAVN</span></div>
-        <div class="muted">Design: Baizly VerkstedSystem</div>
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    /*
-      CONFIG - edit these values
-      - GARAGE_NAME: visible site title and footer
-      - LOGO: path to logo image (relative)
-      - PRIMARY_COLOR: hex color for theme
-      - FORM_SRC: Google Form embed URL (must include embedded=true)
-    */
-    const CONFIG = {
-      GARAGE_NAME: "Netlandet AS",
-      LOGO: "logo.png",
-      PRIMARY_COLOR: "#1f6feb",
-      FORM_SRC: "https://docs.google.com/forms/d/e/1FAIpQLScOYW8aKlgbnBqQIQgu09yeuD3uF348U5ZQ7SxdsbIPY2lQZA/viewform?usp=header"
-    };
-
-    // Apply config
-    document.getElementById('garage-name').textContent = CONFIG.GARAGE_NAME;
-    document.getElementById('logo-img').src = CONFIG.LOGO;
-    document.getElementById('form-frame').src = CONFIG.FORM_SRC;
-    document.getElementById('contact-signature').textContent = CONFIG.GARAGE_NAME;
-    document.getElementById('year').textContent = new Date().getFullYear();
-    document.documentElement.style.setProperty('--primary', CONFIG.PRIMARY_COLOR);
-
-    // Smooth scroll for CTA link
-    document.querySelector('.cta').addEventListener('click', e => {
-      e.preventDefault();
-      document.getElementById('form-frame').scrollIntoView({behavior:'smooth'});
-    });
-  </script>
 </body>
 </html>
