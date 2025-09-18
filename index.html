@@ -5,20 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bestill Verkstedtjeneste</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
   body {
     font-family: 'Inter', sans-serif;
     margin: 0;
-    background: #f9f9f9;
+    background: #f4f6f8;
     color: #333;
   }
 
-  /* Hero section */
+  /* Hero Section */
   .hero {
     background: linear-gradient(135deg, #0d1b2a, #1b263b);
     color: white;
     text-align: center;
-    padding: 80px 20px;
+    padding: 100px 20px 60px 20px;
     position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
   }
   .hero h1 {
     font-size: 3em;
@@ -27,15 +29,13 @@
   }
   .hero p {
     font-size: 1.2em;
-    margin-top: 10px;
+    margin-top: 15px;
     color: #c0cbd3;
   }
-
-  /* Button style */
   .cta-button {
     display: inline-block;
     margin-top: 30px;
-    padding: 15px 35px;
+    padding: 15px 40px;
     background: #ff6600;
     color: white;
     font-weight: 600;
@@ -47,10 +47,41 @@
     background: #ff4500;
   }
 
-  /* Form container */
+  /* Services cards */
+  .services {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 50px auto 0 auto;
+    max-width: 900px;
+    gap: 25px;
+  }
+  .card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    padding: 30px 20px;
+    flex: 1 1 250px;
+    text-align: center;
+    transition: 0.3s;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  }
+  .card h3 {
+    margin-bottom: 15px;
+    color: #0d1b2a;
+  }
+  .card p {
+    font-size: 0.95em;
+    color: #555;
+  }
+
+  /* Form section */
   .form-wrapper {
     max-width: 750px;
-    margin: -60px auto 60px auto;
+    margin: 60px auto 80px auto;
     background: white;
     border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
@@ -70,6 +101,14 @@
     font-size: 0.9em;
     color: #777;
   }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .services {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 </style>
 </head>
 <body>
@@ -80,6 +119,23 @@
   <a href="#form-section" class="cta-button">Fyll ut skjemaet</a>
 </section>
 
+<!-- Service cards -->
+<div class="services">
+  <div class="card">
+    <h3>Service & Vedlikehold</h3>
+    <p>Alt fra oljeskift til full service. Vi tar vare på bilen din.</p>
+  </div>
+  <div class="card">
+    <h3>Dekk & Felger</h3>
+    <p>Skifte, balansering og salg av dekk og felger.</p>
+  </div>
+  <div class="card">
+    <h3>AC & Elektronikk</h3>
+    <p>Diagnose og reparasjon av klima og elektronikk i bilen.</p>
+  </div>
+</div>
+
+<!-- Form -->
 <section class="form-wrapper" id="form-section">
   <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScOYW8aKlgbnBqQIQgu09yeuD3uF348U5ZQ7SxdsbIPY2lQZA/viewform?usp=header">Loading…</iframe>
 </section>
