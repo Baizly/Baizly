@@ -6,53 +6,87 @@
 <title>Bestill Verkstedtjeneste</title>
 <style>
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f4f6f8;
+    font-family: 'Inter', sans-serif;
     margin: 0;
-    padding: 0;
+    background: #f9f9f9;
+    color: #333;
   }
-  .header {
-    background: linear-gradient(135deg, #1a73e8, #4285f4);
+
+  /* Hero section */
+  .hero {
+    background: linear-gradient(135deg, #0d1b2a, #1b263b);
     color: white;
     text-align: center;
-    padding: 60px 20px;
+    padding: 80px 20px;
     position: relative;
-    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
   }
-  .header h1 {
-    font-size: 2.8em;
+  .hero h1 {
+    font-size: 3em;
     margin: 0;
+    font-weight: 700;
   }
-  .header p {
+  .hero p {
     font-size: 1.2em;
     margin-top: 10px;
+    color: #c0cbd3;
   }
+
+  /* Button style */
+  .cta-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 35px;
+    background: #ff6600;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+  }
+  .cta-button:hover {
+    background: #ff4500;
+  }
+
+  /* Form container */
   .form-wrapper {
-    max-width: 700px;
-    margin: -50px auto 50px auto;
+    max-width: 750px;
+    margin: -60px auto 60px auto;
     background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    padding: 40px 20px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    padding: 50px 30px;
   }
   iframe {
     width: 100%;
-    height: 800px;
+    height: 850px;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 25px 10px;
+    font-size: 0.9em;
+    color: #777;
   }
 </style>
 </head>
 <body>
 
-<div class="header">
+<section class="hero">
   <h1>Bestill Verkstedtjeneste</h1>
-  <p>Fyll ut skjemaet under, så tar vi kontakt!</p>
-</div>
+  <p>Profesjonell service for din bil – raskt og enkelt.</p>
+  <a href="#form-section" class="cta-button">Fyll ut skjemaet</a>
+</section>
 
-<div class="form-wrapper">
+<section class="form-wrapper" id="form-section">
   <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScOYW8aKlgbnBqQIQgu09yeuD3uF348U5ZQ7SxdsbIPY2lQZA/viewform?usp=header">Loading…</iframe>
-</div>
+</section>
+
+<footer>
+  &copy; 2025 Baizly Verksted | Alle rettigheter reservert
+</footer>
 
 </body>
 </html>
