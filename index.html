@@ -32,8 +32,8 @@ Quick config example (edit in the CONFIG block near top of file):
   <style>
   :root{
   --primary:#001f3f;   /* navy */
-  --accent:#ffffff;    /* white */
-  --accent:#ffffff;     /* dark grey for accent text */
+  --:#ffffff;    /* white */
+  --:#ffffff;     /* white */
   --bg:#ffffff;        /* page background */
   --glass:rgba(255,255,255,0.9);
   --garage-name: 'NETLANDET AS';
@@ -54,8 +54,8 @@ Quick config example (edit in the CONFIG block near top of file):
     .cta-small{background: var(--primary); color: var(--accent);}
 
     /* MOBILE NAV */
-    .hamburger{display:none;border:0;background:transparent;padding:8px;border-radius:8px}
-    @media(max-width:880px){nav.primary{display:none}.hamburger{display:block}}
+    .hamburger{display:none;border:0;background: color: var(--primary) t;padding:8px;border-radius:8px}
+    @media(max-width:880px){nav.primary{display:none}.hamburger{display:none}}
 
     /* HERO */
     .hero{min-height:78vh;display:flex;align-items:center;justify-content:center;padding:120px 18px 60px;position:relative;overflow:hidden}
