@@ -1,162 +1,285 @@
-<!DOCTYPE html>
+<!--
+Premium Garage Multi-Page Single-File Site
+- Single HTML file that behaves like a multi-page site (hash routing + smooth transitions)
+- Edit the CONFIG below to customize per garage (name, logo, colors, hero image, form URL)
+- Place images in /images/ (logo.png, hero.jpg, any icons)
+- Deploy by uploading this file as index.html to your GitHub Pages repo root.
+
+Quick config example (edit in the CONFIG block near top of file):
+  GARAGE_NAME: "Garasje Hansen",
+  LOGO: "images/logo.png",
+  PRIMARY: "#071028",
+  ACCENT: "#ff6b1a",
+  HERO_IMG: "images/hero.jpg",
+  FORM_URL: "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true",
+  PHONE: "+47 912 34 567",
+  EMAIL: "kontakt@garasje.no",
+  ADDRESS: "Gate 12, 0170 Oslo",
+  OPENING: "Man–Fre 08:00–17:00"
+
+---
+*/
+-->
+
+<!doctype html>
 <html lang="no">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bestill Verkstedtjeneste</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-/* Base reset */
-* { box-sizing:border-box; margin:0; padding:0; }
-body { font-family:'Inter',sans-serif; background:#f4f6f8; color:#333; }
-  <header>
-  <div class="navbar">
-    <img src="images/logo.png" alt="Garage Logo" class="logo">
-    <nav>
-      <ul>
-        <li><a href="#">Hjem</a></li>
-        <li><a href="#">Tjenester</a></li>
-        <li><a href="#">Om oss</a></li>
-        <li><a href="#">Kontakt</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GARASJENAVN — Bestill verksted</title>
+  <meta name="description" content="Enkel bestilling og profesjonell service for verksteder. By Baizly VerkstedSystem." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#071028; --accent:#ff6b1a; --muted:#6b7280; --bg:#f4f6f8; --glass:rgba(255,255,255,0.85);
+      --garage-name: 'GARASJENAVN';
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;background:var(--bg);color:#111}
+    a{color:var(--primary)}
 
+    /* NAV */
+    .site-header{position:fixed;left:0;right:0;top:0;z-index:60;background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.75));backdrop-filter:blur(6px);border-bottom:1px solid rgba(16,24,40,0.04)}
+    .nav-wrap{max-width:1200px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:48px;width:auto}
+    .brand h2{margin:0;font-size:1.05rem;color:var(--primary);letter-spacing:0.2px}
+    nav.primary{display:flex;gap:18px}
+    nav.primary a{color:#111;text-decoration:none;font-weight:600;padding:8px 10px;border-radius:8px}
+    nav.primary a:hover{background:rgba(0,0,0,0.04)}
+    .cta-small{background:var(--accent);color:white;padding:9px 14px;border-radius:10px;font-weight:700}
 
-/* Hero */
-.hero {
-  position:relative;
-  background: linear-gradient(135deg,#0d1b2a,#1b263b);
-  color:white;
-  text-align:center;
-  padding:120px 20px 80px;
-  clip-path: polygon(0 0,100% 0,100% 85%,0 100%);
-  overflow:hidden;
-}
-.hero-logo {
-  max-width:150px;
-  margin-bottom:20px;
-}
-.hero h1 { font-size:3.5em; font-weight:700; margin-bottom:15px; }
-.hero p { font-size:1.3em; color:#c0cbd3; margin-bottom:30px; }
-.cta-button {
-  padding:15px 50px; background:#ff6600; color:white; font-weight:600; border-radius:10px; transition:0.3s;
-}
-.cta-button:hover { background:#ff4500; }
+    /* MOBILE NAV */
+    .hamburger{display:none;border:0;background:transparent;padding:8px;border-radius:8px}
+    @media(max-width:880px){nav.primary{display:none}.hamburger{display:block}}
 
-/* Floating Services Cards */
-.services { display:flex; justify-content:center; flex-wrap:wrap; max-width:1000px; margin:-60px auto 50px auto; gap:25px; padding:0 20px; }
-.card {
-  background:white;
-  flex:1 1 280px;
-  border-radius:20px;
-  padding:30px 25px;
-  text-align:center;
-  box-shadow:0 20px 40px rgba(0,0,0,0.1);
-  transition:0.3s;
-  position:relative;
-  overflow:hidden;
-}
-.card-icon { font-size:3em; margin-bottom:15px; color:#ff6600; }
-.card:hover { transform:translateY(-8px); box-shadow:0 25px 50px rgba(0,0,0,0.15); }
-.card h3 { margin-bottom:10px; color:#0d1b2a; font-size:1.4em; }
-.card p { font-size:0.95em; color:#555; }
+    /* HERO */
+    .hero{min-height:78vh;display:flex;align-items:center;justify-content:center;padding:120px 18px 60px;position:relative;overflow:hidden}
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(7,16,36,0.28), rgba(7,16,36,0.55));pointer-events:none}
+    .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(0.6);z-index:-1}
+    .hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr;gap:28px;align-items:center}
+    .hero-title{color:white}
+    .hero-title h1{font-size:3.0rem;margin:0 0 10px 0;line-height:1.02}
+    .hero-title p{color:rgba(255,255,255,0.9);margin:0 0 18px}
+    .hero-cta{display:flex;gap:12px;align-items:center}
+    .btn{display:inline-block;padding:14px 20px;border-radius:12px;font-weight:700}
+    .btn-primary{background:var(--accent);color:white}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.12);color:white}
+    .hero-card{background:var(--glass);border-radius:16px;padding:20px;box-shadow:0 20px 50px rgba(8,12,20,0.12)}
 
-/* Trust / Why choose us */
-.trust { display:flex; justify-content:center; flex-wrap:wrap; gap:25px; max-width:1000px; margin:60px auto; padding:0 20px; }
-.trust-card {
-  background:#0d1b2a;
-  color:white;
-  border-radius:15px;
-  padding:25px 20px;
-  flex:1 1 250px;
-  text-align:center;
-  box-shadow:0 15px 35px rgba(0,0,0,0.1);
-  transition:0.3s;
-}
-.trust-card:hover { transform:translateY(-5px); box-shadow:0 20px 40px rgba(0,0,0,0.15); }
-.trust-card h4 { margin-bottom:10px; font-size:1.2em; }
-.trust-card p { font-size:0.9em; color:#c0cbd3; }
+    @media(max-width:880px){.hero-inner{grid-template-columns:1fr}.hero-title h1{font-size:2rem}}
 
-/* Form Section */
-.form-wrapper {
-  max-width:850px;
-  margin:60px auto 80px auto;
-  background: rgba(255,255,255,0.95);
-  border-radius:25px;
-  box-shadow:0 25px 50px rgba(0,0,0,0.12);
-  padding:50px 40px;
-  backdrop-filter: blur(5px);
-  position:relative;
-}
-iframe { width:100%; height:850px; border:none; border-radius:15px; }
+    /* SERVICES */
+    .services{max-width:1200px;margin:20px auto;padding:30px 18px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .service-card{background:white;border-radius:14px;padding:26px;box-shadow:0 12px 30px rgba(16,24,40,0.06);transition:transform .28s ease, box-shadow .28s ease}
+    .service-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(16,24,40,0.12)}
+    .service-card h3{margin:0 0 8px}
+    .service-card p{margin:0;color:var(--muted)}
+    @media(max-width:880px){.services{grid-template-columns:1fr}}
 
-/* Footer */
-footer { text-align:center; padding:25px 10px; font-size:0.9em; color:#777; }
+    /* TRUST */
+    .trust{max-width:1200px;margin:10px auto;padding:22px 18px;display:flex;gap:18px;align-items:stretch}
+    .trust-box{flex:1;background:linear-gradient(180deg,white, #fbfdff);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.03)}
 
-/* Responsive */
-@media(max-width:768px){
-  .hero h1 { font-size:2.5em; }
-  .services, .trust { flex-direction:column; align-items:center; margin-top:0; }
-  .card, .trust-card { flex:1 1 90%; }
-}
-</style>
+    /* FORM */
+    .book-section{max-width:1100px;margin:36px auto;padding:28px 18px}
+    .book-grid{display:grid;grid-template-columns:1fr 420px;gap:24px}
+    .book-left{background:white;border-radius:16px;padding:20px;box-shadow:0 20px 40px rgba(16,24,40,0.06)}
+    .book-iframe{width:100%;height:640px;border-radius:12px;border:none}
+    .book-side{background:linear-gradient(180deg,#fff,#fbfdff);border-radius:12px;padding:18px;box-shadow:0 10px 30px rgba(16,24,40,0.04)}
+    @media(max-width:1000px){.book-grid{grid-template-columns:1fr}}
+
+    /* REVIEWS */
+    .reviews{max-width:1200px;margin:40px auto;padding:18px}
+    .review{background:white;border-radius:12px;padding:18px;box-shadow:0 12px 30px rgba(16,24,40,0.04)}
+
+    /* FOOTER */
+    footer.site-footer{background:#071028;color:white;padding:30px 18px;margin-top:40px}
+    footer .wrap{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px}
+    @media(max-width:720px){footer .wrap{flex-direction:column;text-align:center}}
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .container{max-width:1200px;margin:0 auto;padding:0 18px}
+
+    /* subtle entrance animation */
+    .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.visible{opacity:1;transform:none}
+  </style>
 </head>
 <body>
 
-<!-- Hero -->
-<section class="hero">
-<img src="images/logo.png" alt="Garage Logo" class="hero-logo">
-  <h1>Bestill Verkstedtjeneste</h1>
-  <p>Profesjonell service for bilen din – raskt og trygt</p>
-  <a href="#form-section" class="cta-button">Fyll ut skjemaet</a>
-</section>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-wrap">
+      <div class="brand">
+        <img id="logo" src="images/logo.png" alt="logo">
+        <h2 id="siteName">GARASJENAVN</h2>
+      </div>
+      <nav class="primary" id="primaryNav">
+        <a href="#home">Hjem</a>
+        <a href="#services">Tjenester</a>
+        <a href="#book">Bestill</a>
+        <a href="#about">Om oss</a>
+        <a class="cta-small" href="#contact">Kontakt</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Meny">☰</button>
+    </div>
+  </header>
 
-<!-- Services -->
-<div class="services">
-  <div class="card">
-    <div class="card-icon">🛠️</div>
-    <h3>Service & Vedlikehold</h3>
-    <p>Alt fra oljeskift til full service. Vi tar vare på bilen din.</p>
-  </div>
-  <div class="card">
-    <div class="card-icon">🚗</div>
-    <h3>Dekk & Felger</h3>
-    <p>Skifte, balansering og salg av dekk og felger.</p>
-  </div>
-  <div class="card">
-    <div class="card-icon">❄️</div>
-    <h3>AC & Elektronikk</h3>
-    <p>Diagnose og reparasjon av klima og elektronikk i bilen.</p>
-  </div>
-</div>
+  <!-- Main content -->
+  <main>
 
-<!-- Trust Section -->
-<div class="trust">
-  <div class="trust-card">
-    <h4>Erfaring</h4>
-    <p>Over 20 års erfaring med bilservice og reparasjoner.</p>
-  </div>
-  <div class="trust-card">
-    <h4>Kvalitet</h4>
-    <p>Kun kvalitetsdeler og sertifiserte mekanikere.</p>
-  </div>
-  <div class="trust-card">
-    <h4>Trygghet</h4>
-    <p>Vi garanterer trygg og pålitelig service for bilen din.</p>
-  </div>
-</div>
+    <!-- Hero / Home -->
+    <section class="hero" id="home">
+      <div id="heroBg" class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-inner container">
+        <div class="hero-title">
+          <h1 id="heroHeadline">Profesjonell service for din bil</h1>
+          <p id="heroSub">Rask booking — klar og trygg levering. Vi tar oss av resten.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#book">Bestill nå</a>
+            <a class="btn btn-ghost" href="#services">Se tjenester</a>
+          </div>
+        </div>
+        <aside class="hero-card reveal">
+          <h3>Åpningstider</h3>
+          <p id="opening">Man–Fre 08:00–17:00</p>
+          <hr style="margin:12px 0">
+          <p><strong>Adresse</strong><br><span id="addr">Gate 12, Oslo</span></p>
+          <p style="margin-top:12px"><strong>Telefon</strong><br><a id="phoneLink" href="tel:+4712345678">+47 12 34 56 78</a></p>
+        </aside>
+      </div>
+    </section>
 
-<!-- Form -->
-<section class="form-wrapper" id="form-section">
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScOYW8aKlgbnBqQIQgu09yeuD3uF348U5ZQ7SxdsbIPY2lQZA/viewform?usp=header">Loading…</iframe>
-</section>
+    <!-- Services -->
+    <section id="services" class="services container">
+      <div class="service-card reveal">
+        <h3>Service & vedlikehold</h3>
+        <p>Fra oljeskift til full service — vi holder bilen din trygg og driftssikker.</p>
+      </div>
+      <div class="service-card reveal">
+        <h3>Dekk & felger</h3>
+        <p>Skifte, balansering og sesonglagring. Vi hjelper med riktig dekkvalg.</p>
+      </div>
+      <div class="service-card reveal">
+        <h3>Diagnose & elektronikk</h3>
+        <p>Feilsøk og reparasjon av motorstyring, sensorer og elektronikk.</p>
+      </div>
+    </section>
 
-<!-- Footer -->
-<footer>
-  &copy; 2025 Baizly Verksted | Alle rettigheter reservert
-</footer>
+    <!-- Trust / Reviews -->
+    <section class="trust container">
+      <div class="trust-box reveal">
+        <h4>Erfaring</h4>
+        <p class="muted">Våre mekanikere har samlet erfaring fra merkeforhandlere og uavhengige verksteder.</p>
+      </div>
+      <div class="trust-box reveal">
+        <h4>Kvalitetsdeler</h4>
+        <p class="muted">Vi bruker kun godkjente deler og tilbyr garanti på montasje.</p>
+      </div>
+      <div class="trust-box reveal">
+        <h4>Rask respons</h4>
+        <p class="muted">Korte ventetider, raske oppdateringer og ryddig kommunikasjon.</p>
+      </div>
+    </section>
 
+    <!-- Booking -->
+    <section id="book" class="book-section container">
+      <div class="book-grid">
+        <div class="book-left reveal">
+          <h2>Bestill time</h2>
+          <p class="muted">Fyll ut skjemaet, så registreres henvendelsen direkte i verkstedet.</p>
+          <iframe class="book-iframe" id="bookingForm" src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true">Loading…</iframe>
+        </div>
+        <aside class="book-side reveal">
+          <h3>Hva skjer etter bestilling?</h3>
+          <ul class="muted">
+            <li>Vi mottar din henvendelse i systemet.</li>
+            <li>Verkstedet kontakter deg for bekreftelse og pris.</li>
+            <li>Jobben utføres og du får beskjed når den er ferdig.</li>
+          </ul>
+          <hr style="margin:12px 0">
+          <p><strong>Kontakt</strong><br><a id="sidePhone" href="tel:+47...">+47 12 34 56 78</a></p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- About / Contact -->
+    <section id="about" class="container reveal">
+      <h2>Om oss</h2>
+      <p class="muted">Baizly VerkstedSystem leverer profesjonell verkstedtjeneste med fokus på kvalitet og kundetilfredshet.</p>
+    </section>
+
+    <section id="contact" class="container reveal" style="margin-top:20px; margin-bottom:40px">
+      <h2>Kontakt</h2>
+      <p class="muted">Spørsmål? Ring oss eller send e-post.</p>
+      <p><strong>Telefon:</strong> <a id="contactPhone" href="tel:+47...">+47 12 34 56 78</a><br>
+      <strong>E-post:</strong> <a id="contactEmail" href="mailto:hello@example.com">kontakt@garasje.no</a></p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="wrap container">
+      <div>&copy; <span id="copyYear"></span> <span id="copyName">GARASJENAVN</span></div>
+      <div class="muted">By Baizly VerkstedSystem</div>
+    </div>
+  </footer>
+
+  <script>
+    // ====== CONFIG - edit these values for each garage ======
+    const CONFIG = {
+      GARAGE_NAME: "Garasje Hansen",
+      LOGO: "images/logo.png",
+      PRIMARY: "#071028",
+      ACCENT: "#ff6b1a",
+      HERO_IMG: "images/hero.jpg",
+      FORM_URL: "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true",
+      PHONE: "+47 912 34 567",
+      EMAIL: "kontakt@garasje.no",
+      ADDRESS: "Gate 12, 0170 Oslo",
+      OPENING: "Man–Fre 08:00–17:00"
+    };
+
+    // Apply config to DOM and CSS vars
+    document.documentElement.style.setProperty('--primary', CONFIG.PRIMARY);
+    document.documentElement.style.setProperty('--accent', CONFIG.ACCENT);
+    document.getElementById('siteName').textContent = CONFIG.GARAGE_NAME;
+    document.getElementById('copyName').textContent = CONFIG.GARAGE_NAME;
+    document.getElementById('copyYear').textContent = new Date().getFullYear();
+    const logoEl = document.getElementById('logo'); logoEl.src = CONFIG.LOGO; logoEl.alt = CONFIG.GARAGE_NAME + ' logo';
+    document.getElementById('heroBg').style.backgroundImage = `url('`+CONFIG.HERO_IMG+`')`;
+    document.getElementById('bookingForm').src = CONFIG.FORM_URL;
+    document.getElementById('opening').textContent = CONFIG.OPENING;
+    document.getElementById('addr').textContent = CONFIG.ADDRESS;
+    const phoneLink = document.getElementById('phoneLink'); phoneLink.href = 'tel:' + CONFIG.PHONE.replace(/\s/g,''); phoneLink.textContent = CONFIG.PHONE;
+    document.getElementById('sidePhone').href = 'tel:' + CONFIG.PHONE.replace(/\s/g,''); document.getElementById('sidePhone').textContent = CONFIG.PHONE;
+    document.getElementById('contactPhone').href = 'tel:' + CONFIG.PHONE.replace(/\s/g,''); document.getElementById('contactPhone').textContent = CONFIG.PHONE;
+    document.getElementById('contactEmail').href = 'mailto:' + CONFIG.EMAIL; document.getElementById('contactEmail').textContent = CONFIG.EMAIL;
+
+    // Mobile nav toggle
+    const hamb = document.getElementById('hamburger'); const nav = document.getElementById('primaryNav');
+    hamb.addEventListener('click', ()=>{ if(nav.style.display==='flex') nav.style.display=''; else nav.style.display='flex'; });
+
+    // Smooth reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible'); io.unobserve(e.target)}}),{threshold:0.12});
+    reveals.forEach(r=>io.observe(r));
+
+    // Smooth scrolling for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click', e=>{e.preventDefault(); const t=document.querySelector(a.getAttribute('href')); if(t){t.scrollIntoView({behavior:'smooth',block:'start'})}}));
+
+    // Small focus: if hash present on load, scroll to it
+    if(location.hash){const el=document.querySelector(location.hash); if(el){setTimeout(()=>el.scrollIntoView({behavior:'smooth'}),300)}}
+
+    // Accessibility: set document title
+    document.title = CONFIG.GARAGE_NAME + ' — Bestill verkstedtjeneste';
+
+    // final small polish: toggle CSS variables for dynamic accent
+    document.documentElement.style.setProperty('--accent', CONFIG.ACCENT);
+
+  </script>
 </body>
 </html>
