@@ -51,7 +51,7 @@ Quick config example (edit in the CONFIG block near top of file):
     nav.primary{display:flex;gap:18px}
     nav.primary a{color: var(--accent);}
     nav.primary a:hover{background: var(--primary) }
-    .cta-small{background: var(--accent); color: var(--primary);}
+    .cta-small{background: var(--primary); color: var(--accent);} /* ikke rør */
 
     /* MOBILE NAV */
     .hamburger{display:none;border:0;background: color: var(--accent) t;padding:8px;border-radius:8px}
@@ -72,8 +72,7 @@ Quick config example (edit in the CONFIG block near top of file):
   color: var(--accent);
 }
 .btn-ghost {
-  background: transparent;
-  border: 1px solid var(--primary);
+  background: var(--accent) ;
   color: var(--primary);
 }
 
