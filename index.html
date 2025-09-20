@@ -33,7 +33,7 @@ Quick config example (edit in the CONFIG block near top of file):
   :root{
   --primary:#001f3f;   /* navy */
   --accent:#ffffff;    /* white */
-  --muted:#333333;     /* dark grey for muted text */
+  --accent:#333333;     /* dark grey for accent text */
   --bg:#ffffff;        /* page background */
   --glass:rgba(255,255,255,0.9);
   --garage-name: 'NETLANDET AS';
@@ -51,7 +51,7 @@ Quick config example (edit in the CONFIG block near top of file):
     nav.primary{display:flex;gap:18px}
     nav.primary a{color: var(--accent);}
     nav.primary a:hover{background: var(--primary) }
-    .cta-small{background: var(--accent); color: var(--primary);}
+    .cta-small{background: var(--primary); color: var(--accent);}
 
     /* MOBILE NAV */
     .hamburger{display:none;border:0;background:transparent;padding:8px;border-radius:8px}
@@ -86,7 +86,7 @@ Quick config example (edit in the CONFIG block near top of file):
     .service-card{background:white;border-radius:14px;padding:26px;box-shadow:0 12px 30px rgba(16,24,40,0.06);transition:transform .28s ease, box-shadow .28s ease}
     .service-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(16,24,40,0.12)}
     .service-card h3{margin:0 0 8px}
-    .service-card p{margin:0;color:var(--muted)}
+    .service-card p{margin:0;color:var(--primary)}
     @media(max-width:880px){.services{grid-template-columns:1fr}}
 
     /* TRUST */
@@ -123,7 +123,7 @@ Quick config example (edit in the CONFIG block near top of file):
     @media(max-width:720px){footer .wrap{flex-direction:column;text-align:center}}
 
     /* small helpers */
-    .muted{color:var(--muted)}
+    .accent{color:var(--primary)}
     .container{max-width:1200px;margin:0 auto;padding:0 18px}
 
     /* subtle entrance animation */
@@ -196,15 +196,15 @@ Quick config example (edit in the CONFIG block near top of file):
     <section class="trust container">
       <div class="trust-box reveal">
         <h4>Erfaring</h4>
-        <p class="muted">Våre mekanikere har samlet erfaring fra merkeforhandlere og uavhengige verksteder.</p>
+        <p class="accent">Våre mekanikere har samlet erfaring fra merkeforhandlere og uavhengige verksteder.</p>
       </div>
       <div class="trust-box reveal">
         <h4>Kvalitetsdeler</h4>
-        <p class="muted">Vi bruker kun godkjente deler og tilbyr garanti på montasje.</p>
+        <p class="accent">Vi bruker kun godkjente deler og tilbyr garanti på montasje.</p>
       </div>
       <div class="trust-box reveal">
         <h4>Rask respons</h4>
-        <p class="muted">Korte ventetider, raske oppdateringer og ryddig kommunikasjon.</p>
+        <p class="accent">Korte ventetider, raske oppdateringer og ryddig kommunikasjon.</p>
       </div>
     </section>
 
@@ -213,12 +213,12 @@ Quick config example (edit in the CONFIG block near top of file):
       <div class="book-grid">
         <div class="book-left reveal">
           <h2>Bestill time</h2>
-          <p class="muted">Fyll ut skjemaet, så registreres henvendelsen direkte i verkstedet.</p>
+          <p class="accent">Fyll ut skjemaet, så registreres henvendelsen direkte i verkstedet.</p>
           <iframe class="book-iframe" id="bookingForm" src="https://docs.google.com/forms/d/e/1FAIpQLScOYW8aKlgbnBqQIQgu09yeuD3uF348U5ZQ7SxdsbIPY2lQZA/viewform">Loading…</iframe>
         </div>
         <aside class="book-side reveal">
           <h3>Hva skjer etter bestilling?</h3>
-          <ul class="muted">
+          <ul class="accent">
             <li>Vi mottar din henvendelse i systemet.</li>
             <li>Verkstedet kontakter deg for bekreftelse og pris.</li>
             <li>Jobben utføres og du får beskjed når den er ferdig.</li>
@@ -232,12 +232,12 @@ Quick config example (edit in the CONFIG block near top of file):
     <!-- About / Contact -->
     <section id="about" class="container reveal">
       <h2>Om oss</h2>
-      <p class="muted">Baizly VerkstedSystem leverer profesjonell verkstedtjeneste med fokus på kvalitet og kundetilfredshet.</p>
+      <p class="accent">Baizly VerkstedSystem leverer profesjonell verkstedtjeneste med fokus på kvalitet og kundetilfredshet.</p>
     </section>
 
     <section id="contact" class="container reveal" style="margin-top:20px; margin-bottom:40px">
       <h2>Kontakt</h2>
-      <p class="muted">Spørsmål? Ring oss eller send e-post.</p>
+      <p class="accent">Spørsmål? Ring oss eller send e-post.</p>
       <p><strong>Telefon:</strong> <a id="contactPhone" href="tel:+47...">+47 12 34 56 78</a><br>
       <strong>E-post:</strong> <a id="contactEmail" href="mailto:hello@example.com">kontakt@garasje.no</a></p>
     </section>
@@ -248,7 +248,7 @@ Quick config example (edit in the CONFIG block near top of file):
   <footer class="site-footer">
     <div class="wrap container">
       <div>&copy; <span id="copyYear"></span> <span id="copyName">Netlandet AS</span></div>
-      <div class="muted">By Baizly VerkstedSystem</div>
+      <div class="accent">By Baizly VerkstedSystem</div>
     </div>
   </footer>
 
