@@ -30,24 +30,28 @@ Quick config example (edit in the CONFIG block near top of file):
   <meta name="description" content="Enkel bestilling og profesjonell service for verksteder. By Baizly VerkstedSystem." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --primary:#5EB6E4; --accent:#ffffff; --muted:#0320fc; --bg:#ffffff; --glass:rgba(255,255,255,0.85);
-      --garage-name: 'NETLANDET AS';
-    }
+  :root{
+  --primary:#001f3f;   /* navy */
+  --accent:#ffffff;    /* white */
+  --muted:#333333;     /* dark grey for muted text */
+  --bg:#ffffff;        /* page background */
+  --glass:rgba(255,255,255,0.9);
+  --garage-name: 'NETLANDET AS';
+}
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;background:var(--bg);color:#111}
     a{color:var(--primary)}
 
     /* NAV */
-    .site-header{position:fixed;left:0;right:0;top:0;z-index:60;background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.75));backdrop-filter:blur(6px);border-bottom:1px solid rgba(16,24,40,0.04)}
+    .site-header{position:fixed;left:0;right:0;top:0;z-index:60;background:var(--primary);}
     .nav-wrap{max-width:1200px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
     .brand{display:flex;align-items:center;gap:12px}
     .brand img{height:48px;width:auto}
     .brand h2{margin:0;font-size:1.05rem;color:var(--primary);letter-spacing:0.2px}
     nav.primary{display:flex;gap:18px}
-    nav.primary a{color:#111;text-decoration:none;font-weight:600;padding:8px 10px;border-radius:8px}
-    nav.primary a:hover{background:rgba(0,0,0,0.04)}
-    .cta-small{background:var(--accent);color:white;padding:9px 14px;border-radius:10px;font-weight:700}
+    nav.primary a{color: var(--primary);}
+    nav.primary a:hover{background: #f2f2f2; }
+    .cta-small{background: var(--accent); color: var(--primary);}
 
     /* MOBILE NAV */
     .hamburger{display:none;border:0;background:transparent;padding:8px;border-radius:8px}
@@ -63,8 +67,16 @@ Quick config example (edit in the CONFIG block near top of file):
     .hero-title p{color:rgba(255,255,255,0.9);margin:0 0 18px}
     .hero-cta{display:flex;gap:12px;align-items:center}
     .btn{display:inline-block;padding:14px 20px;border-radius:12px;font-weight:700}
-    .btn-primary{background:var(--accent);color:white}
-    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.12);color:white}
+.btn-primary {
+  background: var(--primary);
+  color: var(--accent);
+}
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
+
     .hero-card{background:var(--glass);border-radius:16px;padding:20px;box-shadow:0 20px 50px rgba(8,12,20,0.12)}
 
     @media(max-width:880px){.hero-inner{grid-template-columns:1fr}.hero-title h1{font-size:2rem}}
@@ -94,7 +106,7 @@ Quick config example (edit in the CONFIG block near top of file):
     .review{background:white;border-radius:12px;padding:18px;box-shadow:0 12px 30px rgba(16,24,40,0.04)}
 
     /* FOOTER */
-    footer.site-footer{background:#071028;color:white;padding:30px 18px;margin-top:40px}
+    footer.site-footer{background: var(--primary);  color:var(--accent) }
     footer .wrap{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px}
     @media(max-width:720px){footer .wrap{flex-direction:column;text-align:center}}
 
