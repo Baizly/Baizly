@@ -1,317 +1,126 @@
-<!--
-Premium Garage Multi-Page Single-File Site
-- Single HTML file that behaves like a multi-page site (hash routing + smooth transitions)
-- Edit the CONFIG below to customize per garage (name, logo, colors, hero image, form URL)
-- Place images in /images/ (logo.png, hero.jpg, any icons)
-- Deploy by uploading this file as index.html to your GitHub Pages repo root.
-
-Quick config example (edit in the CONFIG block near top of file):
-  GARAGE_NAME: "Garasje Hansen",
-  LOGO: "images/logo.png",
-  PRIMARY: "#071028",
-  ACCENT: "#ff6b1a",
-  HERO_IMG: "images/hero.jpg",
-  FORM_URL: "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true",
-  PHONE: "+47 912 34 567",
-  EMAIL: "kontakt@garasje.no",
-  ADDRESS: "Gate 12, 0170 Oslo",
-  OPENING: "Man–Fre 08:00–17:00"
-
----
-*/
--->
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>NETLANDET AS — Bestill verksted</title>
-  <meta name="description" content="Enkel bestilling og profesjonell service for verksteder. By Baizly VerkstedSystem." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Netlandet AS — Bestill verksted</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
 :root{
   --primary: #001f3f;   /* navy */
   --accent: #ffffff;    /* white */
-  --muted: #333333;     /* dark gray for muted text */
-  --bg: #ffffff;        /* main background */
-  --glass: rgba(255,255,255,0.9); /* for semi-transparent cards */
-  --garage-name: 'NETLANDET AS';
+  --muted: #333333;     /* dark gray for text */
+  --bg: #ffffff;        /* page background */
+  --glass: rgba(255,255,255,0.9);
 }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;background:var(--bg);color:#111}
-    a{color:var(--accent)}
-
-    /* NAV */
-    .site-header{position:fixed;left:0;right:0;top:0;z-index:60;background:var(--primary);}
-    .nav-wrap{max-width:1200px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:48px;width:auto}
-    .brand h2{margin:0;font-size:1.05rem;color:var(--accent);letter-spacing:0.2px}
-    nav.primary{display:flex;gap:18px}
-    nav.primary a{color: var(--accent);}
-    nav.primary a:hover{background: var(--primary) }
-    .cta-small{background: var(--primary); color: var(--accent);} /* ikke rør */
-
-    /* MOBILE NAV */
-    .hamburger{display:none;border:0;background: color: var(--accent) t;padding:8px;border-radius:8px}
-    @media(max-width:880px){nav.primary{display:none}.hamburger{display:none}}
-
-    /* HERO */
-    .hero{min-height:78vh;display:flex;align-items:center;justify-content:center;padding:120px 18px 60px;position:relative;overflow:hidden}
-    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(7,16,36,0.28), rgba(7,16,36,0.55));pointer-events:none}
-    .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(0.6);z-index:-1}
-    .hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr;gap:28px;align-items:center}
-    .hero-title{color:white}
-    .hero-title h1{font-size:3.0rem;margin:0 0 10px 0;line-height:1.02}
-    .hero-title p{color:rgba(255,255,255,0.9);margin:0 0 18px}
-    .hero-cta{display:flex;gap:12px;align-items:center}
-    .btn{display:inline-block;padding:14px 20px;border-radius:12px;font-weight:700}
-    .normal-btn {
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff;              /* Text color */
-  background: #007bff;      /* Solid background */
-  border: none;             /* No outline */
-  border-radius: 6px;       /* Rounded corners */
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.normal-btn:hover {
-  background: #0056b3;      /* Darker on hover */
-}
-<button class="normal-btn">Click Me</button>
-
-
-    .hero-card{background:var(--glass);border-radius:16px;padding:20px;box-shadow:0 20px 50px rgba(8,12,20,0.12)}
-
-    @media(max-width:880px){.hero-inner{grid-template-columns:1fr}.hero-title h1{font-size:2rem}}
-
-    /* SERVICES */
-    .services{max-width:1200px;margin:20px auto;padding:30px 18px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .service-card{background:white;border-radius:14px;padding:26px;box-shadow:0 12px 30px rgba(16,24,40,0.06);transition:transform .28s ease, box-shadow .28s ease}
-    .service-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(16,24,40,0.12)}
-    .service-card h3{margin:0 0 8px}
-    .service-card p{margin:0;color:var(--primary)}
-    @media(max-width:880px){.services{grid-template-columns:1fr}}
-
-    /* TRUST */
-    .trust{max-width:1200px;margin:10px auto;padding:22px 18px;display:flex;gap:18px;align-items:stretch}
-    .trust-box{flex:1;background:linear-gradient(180deg,white, #fbfdff);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.03)}
-
-    /* FORM */
-    .book-section{max-width:1100px;margin:36px auto;padding:28px 18px}
-    .book-grid{display:grid;grid-template-columns:1fr 420px;gap:24px}
-    .book-left {
-  background: #f9f9f9;   /* light grey to stand out */
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 20px 40px rgba(16,24,40,0.06);
-}
-.book-iframe {
-  width: 100%;
-  height: 640px;
-  border-radius: 12px;
-  border: 2px solid var(--primary);
-  background: white;
-}
-
-    .book-side{background:linear-gradient(180deg,#fff,#000000);border-radius:12px;padding:18px;box-shadow:0 10px 30px rgba(16,24,40,0.04)}
-    @media(max-width:1000px){.book-grid{grid-template-columns:1fr}}
-
-    /* REVIEWS */
-    .reviews{max-width:1200px;margin:40px auto;padding:18px}
-    .review{background:white;border-radius:12px;padding:18px;box-shadow:0 12px 30px rgba(16,24,40,0.04)}
-
-    /* FOOTER */
-    footer.site-footer{background: var(--primary);  color:var(--accent) }
-    footer .wrap{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px}
-    @media(max-width:720px){footer .wrap{flex-direction:column;text-align:center}}
-
-    /* small helpers */
-    .accent{color:var(--primary)}
-    .container{max-width:1200px;margin:0 auto;padding:0 18px}
-
-    /* subtle entrance animation */
-    .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s ease}
-    .reveal.visible{opacity:1;transform:none}
-  </style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,sans-serif;}
+body{background:var(--bg);color:#000;}
+a{text-decoration:none;color:var(--primary);}
+header{position:fixed;top:0;left:0;right:0;background:var(--primary);color:var(--accent);z-index:100;}
+.nav-wrap{max-width:1200px;margin:0 auto;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;}
+.brand img{height:48px;}
+nav a{margin-left:18px;color:var(--accent);font-weight:600;padding:8px 12px;border-radius:6px;}
+nav a:hover{background:var(--accent);color:var(--primary);}
+.cta-small{background:var(--accent);color:var(--primary);}
+.hamburger{display:none;}
+@media(max-width:880px){nav{display:none}.hamburger{display:block;background:none;border:none;color:var(--accent);font-size:1.5rem;}}
+main{margin-top:80px;}
+.hero{min-height:70vh;display:flex;align-items:center;justify-content:center;position:relative;background:#e6f0ff;padding:60px 20px;}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(0.7);z-index:-1;}
+.hero-inner{display:grid;grid-template-columns:2fr 1fr;gap:28px;max-width:1200px;margin:0 auto;align-items:center;}
+.hero-title h1{font-size:2.5rem;color:#000;margin-bottom:12px;}
+.hero-title p{color:#111;margin-bottom:18px;}
+.btn{padding:14px 20px;border-radius:12px;font-weight:700;display:inline-block;}
+.btn-primary{background:var(--primary);color:var(--accent);}
+.btn-ghost{background:transparent;border:2px solid var(--primary);color:var(--primary);}
+.hero-card{background:var(--glass);border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,0.1);}
+.services{max-width:1200px;margin:40px auto;padding:0 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.service-card{background:var(--accent);border-radius:12px;padding:20px;box-shadow:0 8px 20px rgba(0,0,0,0.08);}
+.service-card h3{margin-bottom:8px;color:var(--primary);}
+.service-card p{color:#111;}
+.trust{max-width:1200px;margin:40px auto;padding:0 20px;display:flex;gap:18px;flex-wrap:wrap;}
+.trust-box{flex:1;min-width:200px;background:#f2f6ff;padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.05);}
+.book-section{max-width:1200px;margin:40px auto;padding:0 20px;}
+.book-grid{display:grid;grid-template-columns:1fr 420px;gap:24px;}
+.book-left{background:#f9f9f9;border-radius:16px;padding:20px;box-shadow:0 10px 25px rgba(0,0,0,0.05);}
+.book-iframe{width:100%;height:700px;border:none;border-radius:12px;}
+.book-side{background:#f0f4ff;border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(0,0,0,0.05);}
+section h2,h3,h4{margin-bottom:12px;}
+footer{background:var(--primary);color:var(--accent);padding:30px 20px;text-align:center;}
+footer a{color:var(--accent);}
+.container{max-width:1200px;margin:0 auto;padding:0 20px;}
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+@media(max-width:880px){.hero-inner{grid-template-columns:1fr}.book-grid{grid-template-columns:1fr}.services{grid-template-columns:1fr;}}
+</style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="nav-wrap">
-      <div class="brand">
-        <img id="logo" src="images/logo.png" alt="logo">
-        <h2 id="siteName">Netlandet AS</h2>
-      </div>
-      <nav class="primary" id="primaryNav">
-        <a href="#home">Hjem</a>
-        <a href="#services">Tjenester</a>
-        <a href="#book">Bestill</a>
-        <a href="#about">Om oss</a>
-        <a class="cta-small" href="#contact">Kontakt</a>
-      </nav>
-      <button class="hamburger" id="hamburger" aria-label="Meny">☰</button>
+<header>
+  <div class="nav-wrap">
+    <div class="brand">
+      <img id="logo" src="images/logo.png" alt="Netlandet AS logo">
     </div>
-  </header>
+    <nav id="primaryNav">
+      <a href="#home">Hjem</a>
+      <a href="#services">Tjenester</a>
+      <a href="#book">Bestill</a>
+      <a href="#about">Om oss</a>
+      <a class="cta-small" href="#contact">Kontakt</a>
+    </nav>
+    <button class="hamburger" id="hamburger">☰</button>
+  </div>
+</header>
 
-  <!-- Main content -->
-  <main>
-
-    <!-- Hero / Home -->
-    <section class="hero" id="home">
-      <div id="heroBg" class="hero-bg" aria-hidden="true"></div>
-      <div class="hero-inner container">
-        <div class="hero-title">
-          <h1 id="heroHeadline">Profesjonell service for din bil</h1>
-          <p id="heroSub">Rask booking — klar og trygg levering. Vi tar oss av resten.</p>
-          <div class="hero-cta">
-            <a class="btn btn-primary" href="#book">Bestill nå</a>
-            <a class="btn btn-ghost" href="#services">Se tjenester</a>
-          </div>
-        </div>
-        <aside class="hero-card reveal">
-          <h3>Åpningstider</h3>
-          <p id="opening">Man–Fre 08:00–17:00</p>
-          <hr style="margin:12px 0">
-          <p><strong>Adresse</strong><br><span id="addr">Gate 12, Oslo</span></p>
-          <p style="margin-top:12px"><strong>Telefon</strong><br><a id="phoneLink" href="tel:+4712345678">+47 12 34 56 78</a></p>
-        </aside>
+<main>
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-bg" id="heroBg" style="background-image:url('images/hero.jpg');"></div>
+    <div class="hero-inner">
+      <div class="hero-title">
+        <h1>Profesjonell service for din bil</h1>
+        <p>Rask booking — klar og trygg levering. Vi tar oss av resten.</p>
+        <a class="btn btn-primary" href="#book">Bestill nå</a>
+        <a class="btn btn-ghost" href="#services">Se tjenester</a>
       </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" class="services container">
-      <div class="service-card reveal">
-        <h3>Service & vedlikehold</h3>
-        <p>Fra oljeskift til full service — vi holder bilen din trygg og driftssikker.</p>
-      </div>
-      <div class="service-card reveal">
-        <h3>Dekk & felger</h3>
-        <p>Skifte, balansering og sesonglagring. Vi hjelper med riktig dekkvalg.</p>
-      </div>
-      <div class="service-card reveal">
-        <h3>Diagnose & elektronikk</h3>
-        <p>Feilsøk og reparasjon av motorstyring, sensorer og elektronikk.</p>
-      </div>
-    </section>
-
-    <!-- Trust / Reviews -->
-    <section class="trust container">
-      <div class="trust-box reveal">
-        <h4>Erfaring</h4>
-        <p class="accent">Våre mekanikere har samlet erfaring fra merkeforhandlere og uavhengige verksteder.</p>
-      </div>
-      <div class="trust-box reveal">
-        <h4>Kvalitetsdeler</h4>
-        <p class="accent">Vi bruker kun godkjente deler og tilbyr garanti på montasje.</p>
-      </div>
-      <div class="trust-box reveal">
-        <h4>Rask respons</h4>
-        <p class="accent">Korte ventetider, raske oppdateringer og ryddig kommunikasjon.</p>
-      </div>
-    </section>
-
-    <!-- Booking -->
-    <section id="book" class="book-section container">
-      <div class="book-grid">
-        <div class="book-left reveal">
-          <h2>Bestill time</h2>
-          <p class="accent">Fyll ut skjemaet, så registreres henvendelsen direkte i verkstedet.</p>
-          <iframe class="book-iframe" id="bookingForm" src="https://docs.google.com/forms/d/e/1FAIpQLScOYW8aKlgbnBqQIQgu09yeuD3uF348U5ZQ7SxdsbIPY2lQZA/viewform">Loading…</iframe>
-        </div>
-        <aside class="book-side reveal">
-          <h3>Hva skjer etter bestilling?</h3>
-          <ul class="accent">
-            <li>Vi mottar din henvendelse i systemet.</li>
-            <li>Verkstedet kontakter deg for bekreftelse og pris.</li>
-            <li>Jobben utføres og du får beskjed når den er ferdig.</li>
-          </ul>
-          <hr style="margin:12px 0">
-          <p><strong>Kontakt</strong><br><a id="sidePhone" href="tel:+47...">+47 12 34 56 78</a></p>
-        </aside>
-      </div>
-    </section>
-
-    <!-- About / Contact -->
-    <section id="about" class="container reveal">
-      <h2>Om oss</h2>
-      <p class="accent">Baizly VerkstedSystem leverer profesjonell verkstedtjeneste med fokus på kvalitet og kundetilfredshet.</p>
-    </section>
-
-    <section id="contact" class="container reveal" style="margin-top:20px; margin-bottom:40px">
-      <h2>Kontakt</h2>
-      <p class="accent">Spørsmål? Ring oss eller send e-post.</p>
-      <p><strong>Telefon:</strong> <a id="contactPhone" href="tel:+47...">+47 12 34 56 78</a><br>
-      <strong>E-post:</strong> <a id="contactEmail" href="mailto:hello@example.com">kontakt@garasje.no</a></p>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="wrap container">
-      <div>&copy; <span id="copyYear"></span> <span id="copyName">Netlandet AS</span></div>
-      <div class="accent">By Baizly VerkstedSystem</div>
+      <aside class="hero-card reveal">
+        <h3>Åpningstider</h3>
+        <p>Man–Fre 08:00–17:00</p>
+        <p><strong>Adresse:</strong> Gate 12, Oslo</p>
+        <p><strong>Telefon:</strong> <a href="tel:+4712345678">+47 12 34 56 78</a></p>
+      </aside>
     </div>
-  </footer>
+  </section>
 
-  <script>
-    // ====== CONFIG - edit these values for each garage ======
-    const CONFIG = {
-      GARAGE_NAME: "Netlandet AS",
-      LOGO: "images/logo.png",
-      PRIMARY: "#5EB6E4",
-      ACCENT: "#ffffff",
-      HERO_IMG: "images/logo.jpg",
-      FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLScOYW8aKlgbnBqQIQgu09yeuD3uF348U5ZQ7SxdsbIPY2lQZA/viewform",
-      PHONE: "+47 912 34 567",
-      EMAIL: "kontakt@garasje.no",
-      ADDRESS: "Gate 12, 0170 Oslo",
-      OPENING: "Man–Fre 08:00–17:00"
-    };
+  <!-- Services -->
+  <section id="services" class="services container">
+    <div class="service-card reveal">
+      <h3>Service & vedlikehold</h3>
+      <p>Fra oljeskift til full service — vi holder bilen trygg.</p>
+    </div>
+    <div class="service-card reveal">
+      <h3>Dekk & felger</h3>
+      <p>Skifte, balansering og sesonglagring. Vi hjelper med riktig dekkvalg.</p>
+    </div>
+    <div class="service-card reveal">
+      <h3>Diagnose & elektronikk</h3>
+      <p>Feilsøk og reparasjon av motorstyring, sensorer og elektronikk.</p>
+    </div>
+  </section>
 
-    // Apply config to DOM and CSS vars
-    document.documentElement.style.setProperty('--primary', CONFIG.PRIMARY);
-    document.documentElement.style.setProperty('--accent', CONFIG.ACCENT);
-    document.getElementById('siteName').textContent = CONFIG.GARAGE_NAME;
-    document.getElementById('copyName').textContent = CONFIG.GARAGE_NAME;
-    document.getElementById('copyYear').textContent = new Date().getFullYear();
-    const logoEl = document.getElementById('logo'); logoEl.src = CONFIG.LOGO; logoEl.alt = CONFIG.GARAGE_NAME + ' logo';
-    document.getElementById('heroBg').style.backgroundImage = `url('`+CONFIG.HERO_IMG+`')`;
-    document.getElementById('bookingForm').src = CONFIG.FORM_URL;
-    document.getElementById('opening').textContent = CONFIG.OPENING;
-    document.getElementById('addr').textContent = CONFIG.ADDRESS;
-    const phoneLink = document.getElementById('phoneLink'); phoneLink.href = 'tel:' + CONFIG.PHONE.replace(/\s/g,''); phoneLink.textContent = CONFIG.PHONE;
-    document.getElementById('sidePhone').href = 'tel:' + CONFIG.PHONE.replace(/\s/g,''); document.getElementById('sidePhone').textContent = CONFIG.PHONE;
-    document.getElementById('contactPhone').href = 'tel:' + CONFIG.PHONE.replace(/\s/g,''); document.getElementById('contactPhone').textContent = CONFIG.PHONE;
-    document.getElementById('contactEmail').href = 'mailto:' + CONFIG.EMAIL; document.getElementById('contactEmail').textContent = CONFIG.EMAIL;
-
-    // Mobile nav toggle
-    const hamb = document.getElementById('hamburger'); const nav = document.getElementById('primaryNav');
-    hamb.addEventListener('click', ()=>{ if(nav.style.display==='flex') nav.style.display=''; else nav.style.display='flex'; });
-
-    // Smooth reveal on scroll
-    const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible'); io.unobserve(e.target)}}),{threshold:0.12});
-    reveals.forEach(r=>io.observe(r));
-
-    // Smooth scrolling for internal links
-    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click', e=>{e.preventDefault(); const t=document.querySelector(a.getAttribute('href')); if(t){t.scrollIntoView({behavior:'smooth',block:'start'})}}));
-
-    // Small focus: if hash present on load, scroll to it
-    if(location.hash){const el=document.querySelector(location.hash); if(el){setTimeout(()=>el.scrollIntoView({behavior:'smooth'}),300)}}
-
-    // Accessibility: set document title
-    document.title = CONFIG.GARAGE_NAME + ' — Bestill verkstedtjeneste';
-
-    // final small polish: toggle CSS variables for dynamic accent
-    document.documentElement.style.setProperty('--accent', CONFIG.ACCENT);
-
-  </script>
-</body>
-</html>
+  <!-- Booking -->
+  <section id="book" class="book-section">
+    <div class="book-grid">
+      <div class="book-left reveal">
+        <h2>Bestill time</h2>
+        <p>Fyll ut skjemaet, så registreres henvendelsen direkte i verkstedet.</p>
+        <iframe class="book-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLScOYW8aKlgbnBqQIQgu09yeuD3uF348U5ZQ7SxdsbIPY2lQZA/viewform?embedded=true">Loading…</iframe>
+      </div>
+      <aside class="book-side reveal">
+        <h3>Hva skjer etter bestilling?</h3>
+        <ul>
+          <li>Vi mottar din henvendelse i systemet.</li>
+          <li>Verkstedet kontakter deg for bekreftelse og pris.</li>
+          <li>Jobben utføres og du får beskjed når den er ferdig.</li>
+        </ul>
+        <p><strong>Kontakt:</strong> <a href="tel:+4712345678">+47 12 34 56 78</a
