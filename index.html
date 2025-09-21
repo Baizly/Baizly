@@ -1,126 +1,115 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="no">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Netlandet AS — Bestill verksted</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --primary: #001f3f;   /* navy */
-  --accent: #ffffff;    /* white */
-  --muted: #333333;     /* dark gray for text */
-  --bg: #ffffff;        /* page background */
-  --glass: rgba(255,255,255,0.9);
-}
-*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,sans-serif;}
-body{background:var(--bg);color:#000;}
-a{text-decoration:none;color:var(--primary);}
-header{position:fixed;top:0;left:0;right:0;background:var(--primary);color:var(--accent);z-index:100;}
-.nav-wrap{max-width:1200px;margin:0 auto;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;}
-.brand img{height:48px;}
-nav a{margin-left:18px;color:var(--accent);font-weight:600;padding:8px 12px;border-radius:6px;}
-nav a:hover{background:var(--accent);color:var(--primary);}
-.cta-small{background:var(--accent);color:var(--primary);}
-.hamburger{display:none;}
-@media(max-width:880px){nav{display:none}.hamburger{display:block;background:none;border:none;color:var(--accent);font-size:1.5rem;}}
-main{margin-top:80px;}
-.hero{min-height:70vh;display:flex;align-items:center;justify-content:center;position:relative;background:#e6f0ff;padding:60px 20px;}
-.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(0.7);z-index:-1;}
-.hero-inner{display:grid;grid-template-columns:2fr 1fr;gap:28px;max-width:1200px;margin:0 auto;align-items:center;}
-.hero-title h1{font-size:2.5rem;color:#000;margin-bottom:12px;}
-.hero-title p{color:#111;margin-bottom:18px;}
-.btn{padding:14px 20px;border-radius:12px;font-weight:700;display:inline-block;}
-.btn-primary{background:var(--primary);color:var(--accent);}
-.btn-ghost{background:transparent;border:2px solid var(--primary);color:var(--primary);}
-.hero-card{background:var(--glass);border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,0.1);}
-.services{max-width:1200px;margin:40px auto;padding:0 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.service-card{background:var(--accent);border-radius:12px;padding:20px;box-shadow:0 8px 20px rgba(0,0,0,0.08);}
-.service-card h3{margin-bottom:8px;color:var(--primary);}
-.service-card p{color:#111;}
-.trust{max-width:1200px;margin:40px auto;padding:0 20px;display:flex;gap:18px;flex-wrap:wrap;}
-.trust-box{flex:1;min-width:200px;background:#f2f6ff;padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.05);}
-.book-section{max-width:1200px;margin:40px auto;padding:0 20px;}
-.book-grid{display:grid;grid-template-columns:1fr 420px;gap:24px;}
-.book-left{background:#f9f9f9;border-radius:16px;padding:20px;box-shadow:0 10px 25px rgba(0,0,0,0.05);}
-.book-iframe{width:100%;height:700px;border:none;border-radius:12px;}
-.book-side{background:#f0f4ff;border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(0,0,0,0.05);}
-section h2,h3,h4{margin-bottom:12px;}
-footer{background:var(--primary);color:var(--accent);padding:30px 20px;text-align:center;}
-footer a{color:var(--accent);}
-.container{max-width:1200px;margin:0 auto;padding:0 20px;}
-.reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s ease;}
-.reveal.visible{opacity:1;transform:none;}
-@media(max-width:880px){.hero-inner{grid-template-columns:1fr}.book-grid{grid-template-columns:1fr}.services{grid-template-columns:1fr;}}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Garage Site</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <div class="nav-wrap">
-    <div class="brand">
-      <img id="logo" src="images/logo.png" alt="Netlandet AS logo">
-    </div>
-    <nav id="primaryNav">
-      <a href="#home">Hjem</a>
-      <a href="#services">Tjenester</a>
-      <a href="#book">Bestill</a>
-      <a href="#about">Om oss</a>
-      <a class="cta-small" href="#contact">Kontakt</a>
-    </nav>
-    <button class="hamburger" id="hamburger">☰</button>
-  </div>
-</header>
-
-<main>
-  <!-- Hero -->
-  <section class="hero" id="home">
-    <div class="hero-bg" id="heroBg" style="background-image:url('images/hero.jpg');"></div>
-    <div class="hero-inner">
-      <div class="hero-title">
-        <h1>Profesjonell service for din bil</h1>
-        <p>Rask booking — klar og trygg levering. Vi tar oss av resten.</p>
-        <a class="btn btn-primary" href="#book">Bestill nå</a>
-        <a class="btn btn-ghost" href="#services">Se tjenester</a>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-wrap">
+      <div class="brand">
+        <img id="logo" src="" alt="logo">
+        <h2 id="siteName">Garage Name</h2>
       </div>
-      <aside class="hero-card reveal">
-        <h3>Åpningstider</h3>
-        <p>Man–Fre 08:00–17:00</p>
-        <p><strong>Adresse:</strong> Gate 12, Oslo</p>
-        <p><strong>Telefon:</strong> <a href="tel:+4712345678">+47 12 34 56 78</a></p>
-      </aside>
+      <nav class="primary" id="primaryNav">
+        <a href="#home">Hjem</a>
+        <a href="#services">Tjenester</a>
+        <a href="#book">Bestill</a>
+        <a href="#about">Om oss</a>
+        <a class="cta-small" href="#contact">Kontakt</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Meny">☰</button>
     </div>
-  </section>
+  </header>
 
-  <!-- Services -->
-  <section id="services" class="services container">
-    <div class="service-card reveal">
-      <h3>Service & vedlikehold</h3>
-      <p>Fra oljeskift til full service — vi holder bilen trygg.</p>
-    </div>
-    <div class="service-card reveal">
-      <h3>Dekk & felger</h3>
-      <p>Skifte, balansering og sesonglagring. Vi hjelper med riktig dekkvalg.</p>
-    </div>
-    <div class="service-card reveal">
-      <h3>Diagnose & elektronikk</h3>
-      <p>Feilsøk og reparasjon av motorstyring, sensorer og elektronikk.</p>
-    </div>
-  </section>
+  <main>
 
-  <!-- Booking -->
-  <section id="book" class="book-section">
-    <div class="book-grid">
-      <div class="book-left reveal">
-        <h2>Bestill time</h2>
-        <p>Fyll ut skjemaet, så registreres henvendelsen direkte i verkstedet.</p>
-        <iframe class="book-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLScOYW8aKlgbnBqQIQgu09yeuD3uF348U5ZQ7SxdsbIPY2lQZA/viewform?embedded=true">Loading…</iframe>
+    <!-- Hero / Home -->
+    <section class="hero" id="home">
+      <div id="heroBg" class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-inner container">
+        <div class="hero-title">
+          <h1 id="heroHeadline">Profesjonell service for din bil</h1>
+          <p id="heroSub">Rask booking — klar og trygg levering. Vi tar oss av resten.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#book">Bestill nå</a>
+            <a class="btn btn-ghost" href="#services">Se tjenester</a>
+          </div>
+        </div>
+        <aside class="hero-card reveal">
+          <h3>Åpningstider</h3>
+          <p id="opening"></p>
+          <hr style="margin:12px 0">
+          <p><strong>Adresse</strong><br><span id="addr"></span></p>
+          <p style="margin-top:12px"><strong>Telefon</strong><br><a id="phoneLink" href=""></a></p>
+        </aside>
       </div>
-      <aside class="book-side reveal">
-        <h3>Hva skjer etter bestilling?</h3>
-        <ul>
-          <li>Vi mottar din henvendelse i systemet.</li>
-          <li>Verkstedet kontakter deg for bekreftelse og pris.</li>
-          <li>Jobben utføres og du får beskjed når den er ferdig.</li>
-        </ul>
-        <p><strong>Kontakt:</strong> <a href="tel:+4712345678">+47 12 34 56 78</a
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services container">
+      <div class="service-card reveal">
+        <h3>Service & vedlikehold</h3>
+        <p>Fra oljeskift til full service — vi holder bilen din trygg og driftssikker.</p>
+      </div>
+      <div class="service-card reveal">
+        <h3>Dekk & felger</h3>
+        <p>Skifte, balansering og sesonglagring. Vi hjelper med riktig dekkvalg.</p>
+      </div>
+      <div class="service-card reveal">
+        <h3>Diagnose & elektronikk</h3>
+        <p>Feilsøk og reparasjon av motorstyring, sensorer og elektronikk.</p>
+      </div>
+    </section>
+
+    <!-- Booking -->
+    <section id="book" class="book-section container">
+      <div class="book-grid">
+        <div class="book-left reveal">
+          <h2>Bestill time</h2>
+          <p class="accent">Fyll ut skjemaet, så registreres henvendelsen direkte i verkstedet.</p>
+          <iframe class="book-iframe" id="bookingForm" src="">Loading…</iframe>
+        </div>
+        <aside class="book-side reveal">
+          <h3>Hva skjer etter bestilling?</h3>
+          <ul class="accent">
+            <li>Vi mottar din henvendelse i systemet.</li>
+            <li>Verkstedet kontakter deg for bekreftelse og pris.</li>
+            <li>Jobben utføres og du får beskjed når den er ferdig.</li>
+          </ul>
+          <hr style="margin:12px 0">
+          <p><strong>Kontakt</strong><br><a id="sidePhone" href=""></a></p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- About / Contact -->
+    <section id="about" class="container reveal">
+      <h2>Om oss</h2>
+      <p class="accent">Profesjonell verkstedtjeneste med fokus på kvalitet og kundetilfredshet.</p>
+    </section>
+
+    <section id="contact" class="container reveal" style="margin-top:20px; margin-bottom:40px">
+      <h2>Kontakt</h2>
+      <p class="accent">Spørsmål? Ring oss eller send e-post.</p>
+      <p><strong>Telefon:</strong> <a id="contactPhone" href=""></a><br>
+      <strong>E-post:</strong> <a id="contactEmail" href=""></a></p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap container">
+      <div>&copy; <span id="copyYear"></span> <span id="copyName">Garage Name</span></div>
+      <div class="accent">By Baizly VerkstedSystem</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
