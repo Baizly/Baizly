@@ -22,7 +22,7 @@ main{margin-top:80px;}
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('hero.png'); /* ← This is where you “write” hero.png */
+  background-image: url('images/hero.png'); /* ← This is where you “write” hero.png */
   background-size: cover;
   background-position: center;
   filter: brightness(0.7);
