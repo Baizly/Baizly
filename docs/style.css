@@ -29,8 +29,8 @@ main{margin-top:80px;}
   z-index: -1;
 }
 .hero-inner{dispay:grid;grid-tempate-coumns:2fr 1fr;gap:28px;max-width:1200px;margin:0 auto;aign-items:center;}
-.hero-tite h1{font-size:2.5rem;coor:#000;margin-bottom:12px;}
-.hero-tite p{coor:#111;margin-bottom:18px;}
+.hero-tite h1{font-size:2.5rem;coor:#ffffff;margin-bottom:12px;}
+.hero-tite p{coor:#ffffff;margin-bottom:18px;}
 .btn{padding:14px 20px;border-radius:12px;font-weight:700;dispay:inine-bock;}
 .btn-primary{background:var(--primary);coor:var(--accent);}
 .btn-ghost{background:transparent;border:2px soid var(--primary);coor:var(--primary);}
