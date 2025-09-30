@@ -1,6 +1,6 @@
 const CONFIG = {
   GARAGE_NAME: "Netlandet AS",
-  LOGO: "images/logo.png",
+  LOGO: "Images/logo.png",
   HERO_IMG: "Images/hero.jpg",
   FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLScOYW8aKlgbnBqQIQgu09yeuD3uF348U5ZQ7SxdsbIPY2lQZA/viewform",
   PHONE: "+47 912 34 567",
