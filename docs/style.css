@@ -9,9 +9,9 @@
 *{box-sizing:border-box;margin:0;padding:0;font-family:Inter,sans-serif;}
 body{background:var(--bg);color:#000;}
 a{text-decoration:none;color:var(--primary);}
-header{position:fixed;top:0;left:0;right:0;background-image: url('Images/logo.png);color:var(--accent);z-index:100;}
+header{position:fixed;top:0;left:0;right:0;background:var(--primary);color:var(--accent);z-index:100;}
 .nav-wrap{max-width:1200px;margin:0 auto;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;}
-.brand img{height:48px;}
+.brand img: url('Images/logo.png){height:48px;}
 nav a{margin-left:18px;color:var(--accent);font-weight:600;padding:8px 12px;border-radius:6px;}
 nav a:hover{background:var(--accent);color:var(--primary);}
 .cta-small{background:var(--accent);color:var(--primary);}
