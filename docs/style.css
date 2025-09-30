@@ -45,7 +45,7 @@ footer a{color:var(--accent);}
 .reveal.visible{opacity:1;transform:none;}
 .logo {
   max-width: auto;
-  height: 20px;
+  height: 5px;
 }
 @media(max-width:880px){.hero-inner{grid-template-columns:1fr}.book-grid{grid-template-columns:1fr}.services{grid-template-columns:1fr;}}
 </style>
