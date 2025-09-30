@@ -18,7 +18,7 @@ nav a:hover{background:var(--accent);color:var(--primary);}
 .hamburger{display:none;}
 @media(max-width:880px){nav{display:none}.hamburger{display:block;background:none;border:none;color:var(--accent);font-size:1.5rem;}}
 main{margin-top:80px;}
-.hero{min-height:70vh;display:flex;align-items:center;justify-content:center;position:relative;background:#e6f0ff;padding:60px 20px;}
+.hero{min-height:70vh;display:flex;align-items:center;justify-content:center;position:relative;background-image: url('Images/hero.png'); ;padding:60px 20px;}
 .hero-bg {
   position: absolute;
   inset: 0;
