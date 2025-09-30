@@ -48,7 +48,7 @@ footer a{color:var(--accent);}
 #logo {
   display: block;
   max-width: 150px !important;   /* never wider than this */
-  max-height: 60px !important;   /* never taller than this */
+  max-height: 120px !important;   /* never taller than this */
   width: auto !important;
   height: auto !important;
   object-fit: contain;
